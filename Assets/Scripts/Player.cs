@@ -15,15 +15,16 @@ public class Player : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         MovementPlayer();
         shoot();
         TakeDamage();
-        
+       
         
     }
     public void MovementPlayer()
