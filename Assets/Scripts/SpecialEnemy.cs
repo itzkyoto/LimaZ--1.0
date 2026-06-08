@@ -26,7 +26,7 @@ public class SpecialEnemy : MonoBehaviour
 
     void Start()
     {
-        
+        target = GameObject.FindGameObjectWithTag("Player");
     }
 
 
