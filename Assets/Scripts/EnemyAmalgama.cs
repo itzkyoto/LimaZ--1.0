@@ -21,6 +21,8 @@ public class EnemyAmalgama : MonoBehaviour
     void Update()
     {
         FollowTarget();
+        if (!IsAbleToAttack)
+            TimeToDoSet();
     }
     public void FollowTarget()
     {

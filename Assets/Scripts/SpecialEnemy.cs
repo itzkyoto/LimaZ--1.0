@@ -34,7 +34,7 @@ public class SpecialEnemy : MonoBehaviour
     {
 
         ChangeMode();
-       
+        
 
 
 
@@ -53,12 +53,16 @@ public class SpecialEnemy : MonoBehaviour
         if (AttackMode == false)
         {
             FollowTarget(radiusMovement);
+            if (!IsAbleToAttack)
+                TimeToDoSet();
+
 
         }
         else
         {
-            AvoidTarget();
-
+            AvoidTarget(radiusattack);
+            if (!IsAbleToUseSpecialAbility)
+                TimeToDoSpeciaAbility();
         }
 
     }
@@ -76,6 +80,7 @@ public class SpecialEnemy : MonoBehaviour
                 {
                     target.GetComponent<Player>().Health -= damage;
                     IsAbleToAttack = false;
+                    Debug.Log("toma toma");
                 }
 
             }
@@ -86,7 +91,7 @@ public class SpecialEnemy : MonoBehaviour
         }
 
     }
-    public void AvoidTarget( )
+    public void AvoidTarget(float radiusattack)
     {
       
 
@@ -100,11 +105,16 @@ public class SpecialEnemy : MonoBehaviour
         }
         else
         {
-            if (IsAbleToUseSpecialAbility)
+            if (radiusattack <= 5)
             {
-                target.GetComponent<Player>().Health -= SpecialAbilityDamage;
-                IsAbleToUseSpecialAbility = false;
+                if (IsAbleToUseSpecialAbility)
+                {
+                    target.GetComponent<Player>().Health -= SpecialAbilityDamage;
+                    IsAbleToUseSpecialAbility = false;
+                    Debug.Log("toma toma te pego piu piu");
+                }
             }
+           
         }
 
     }

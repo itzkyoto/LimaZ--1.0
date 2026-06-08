@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public float Health;
     public GameObject BulletPreFab;
 
-    private Animator animator;
+    public Animator animator;
     
 
     void Start()
@@ -24,6 +24,8 @@ public class Player : MonoBehaviour
         MovementPlayer();
         shoot();
         TakeDamage();
+        
+
        
         
     }
@@ -40,7 +42,15 @@ public class Player : MonoBehaviour
         dir.Normalize();
 
         if (dir != Vector3.zero)
+        {
+            animator.SetBool("Abajo", true);
             transform.position += dir * Speed * Time.deltaTime;
+        }
+        else
+        {
+            animator.SetBool("Abajo", false);
+        }
+
 
     }
     public void shoot()
