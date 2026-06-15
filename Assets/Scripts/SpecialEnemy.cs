@@ -69,6 +69,10 @@ public class SpecialEnemy : MonoBehaviour
 
     public void FollowTarget(float radiusMovement)
     {
+        if (target == null)
+        {
+            return;
+        }
         radiusMovement = 10;
         Vector3 direction = (target.transform.position - transform.position).normalized;
         if (Vector3.Distance(transform.position, target.transform.position) < radiusMovement)
@@ -93,7 +97,10 @@ public class SpecialEnemy : MonoBehaviour
     }
     public void AvoidTarget(float radiusattack)
     {
-      
+        if (target == null)
+        {
+            return;
+        }
 
         Vector3 dir = (target.transform.position - transform.position).normalized;
 

@@ -26,6 +26,11 @@ public class Zombie : MonoBehaviour
     }
     public void FollowTarget()
     {
+       if (target == null)
+        {
+            return;
+        }
+
         Vector3 direction = (target.transform.position - transform.position).normalized;
         if (Vector3.Distance(transform.position, target.transform.position) < radiusMovement)
         {
