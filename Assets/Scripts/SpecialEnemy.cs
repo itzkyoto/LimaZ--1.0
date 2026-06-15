@@ -105,7 +105,7 @@ public class SpecialEnemy : MonoBehaviour
         }
         else
         {
-            if (radiusattack <= 5)
+            if (radiusattack == 5)
             {
                 if (IsAbleToUseSpecialAbility)
                 {
