@@ -2,6 +2,17 @@ using UnityEngine;
 
 public class EnemyAmalgama : MonoBehaviour
 {
+
+    public enum EnemyState
+    {
+        None,
+        Idle,
+        Chase,
+        Flee,
+        Attack,
+
+    }
+    public EnemyState State;
     public float Speed = 2.5f;
     public GameObject target;
     public float radiusattack = 1;
@@ -20,46 +31,59 @@ public class EnemyAmalgama : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FollowTarget();
-        if (!IsAbleToAttack)
-            TimeToDoSet();
-    }
-    public void FollowTarget()
-    {
-        if (target == null)
+        Vector3 targetPos = target.transform.position;
+        Vector3 myPos = transform.position;
+        switch (State)
         {
-            return;
-        }
-        Vector3 direction = (target.transform.position - transform.position).normalized;
-        if (Vector3.Distance(transform.position, target.transform.position) < radiusMovement)
-        {
-            if (Vector3.Distance(transform.position, target.transform.position) < radiusattack)
-            {
-                Debug.Log("ven maldito");
-                if (IsAbleToAttack)
+            case EnemyState.None:
+                break;
+
+            case EnemyState.Idle:
                 {
-                    target.GetComponent<Player>().Health -= damage;
-                    IsAbleToAttack = false;
+                    if (Vector3.Distance(targetPos, myPos) < radiusMovement)
+                        State = EnemyState.Chase;
                 }
+                break;
 
-            }
-            else
-            {
-                transform.position += direction * Speed * Time.deltaTime;
-            }
+            case EnemyState.Chase:
+                {
+                    Vector3 direction = (targetPos - myPos).normalized;
+                    transform.position += direction * Speed * Time.deltaTime;
+
+
+                    if (Vector3.Distance(targetPos, myPos) > radiusMovement)
+                        State = EnemyState.Idle;
+
+                    if (Vector3.Distance(targetPos, myPos) < radiusattack)
+                        State = EnemyState.Attack;
+                }
+                break;
+            case EnemyState.Attack:
+                {
+                    if (IsAbleToAttack)
+                    {
+
+                        Debug.Log("ven maldito");
+                        target.GetComponent<Player>().Health -= damage;
+                        IsAbleToAttack = false;
+                    }
+                    ResetTime += Time.deltaTime;
+                    if (ResetTime >= MaxTime)
+                    {
+                        IsAbleToAttack = true;
+
+                        ResetTime = 0;
+                    }
+
+
+                    if (Vector3.Distance(targetPos, myPos) > radiusattack)
+                        State = EnemyState.Chase;
+                }
+                break;
+
+            default:
+                break;
         }
 
-    }
-
-    public void TimeToDoSet()
-    {
-        ResetTime += Time.deltaTime;
-        if (ResetTime >= MaxTime)
-        {
-
-            IsAbleToAttack = true;
-
-            ResetTime = 0;
-        }
     }
 }

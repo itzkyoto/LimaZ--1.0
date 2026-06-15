@@ -62,7 +62,7 @@ public class Zombie : MonoBehaviour
                     if (IsAbleToAttack)
                     {
 
-                        Debug.Log("Atacando");
+                        Debug.Log("ven maldito");
                         target.GetComponent<Player>().Health -= damage;
                         IsAbleToAttack = false;
                     }
