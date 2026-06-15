@@ -1,9 +1,21 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using static UnityEngine.GraphicsBuffer;
 
 
 public class SpecialEnemy : MonoBehaviour
 {
+    public enum EnemyState
+    {
+        None,
+        Idle,
+        Chase,
+        Flee,
+        Attack,
+        
+    }
+    public EnemyState state;
+    
     public float Speed = 5;
     public GameObject target;
     public float radiusattack = 1;
@@ -33,9 +45,68 @@ public class SpecialEnemy : MonoBehaviour
     void Update()
     {
 
-        ChangeMode();
-        
 
+
+        Vector3 targetPos = target.transform.position;
+        Vector3 myPos = transform.position;
+        switch (state)
+        {
+            case EnemyState.None:
+                break;
+
+            case EnemyState.Idle:
+                {
+                    if (Vector3.Distance(targetPos, myPos) < radiusMovement)
+                        state = EnemyState.Chase;
+                }
+                break;
+
+            case EnemyState.Chase:
+                {
+                    Vector3 direction = (targetPos - myPos).normalized;
+                    transform.position += direction * Speed * Time.deltaTime;
+
+                    
+                    if (Vector3.Distance(targetPos, myPos) > radiusMovement)
+                        state = EnemyState.Idle;
+                    
+                    if (Vector3.Distance(targetPos, myPos) < radiusattack)
+                        state = EnemyState.Attack;
+                }
+                break;
+
+            case EnemyState.Flee:
+                {
+
+                }
+                break;
+
+            case EnemyState.Attack:
+                {
+                    if (IsAbleToAttack)
+                    {
+                        
+                        Debug.Log("Atacando");
+                        target.GetComponent<Player>().Health -= damage;
+                        IsAbleToAttack = false;
+                    }
+                    currentTime += Time.deltaTime;
+                    if (currentTime >= MaxTime)
+                    {
+                        IsAbleToAttack = true;
+
+                        currentTime = 0;
+                    }
+
+                    
+                    if (Vector3.Distance(targetPos, myPos) > radiusattack)
+                        state = EnemyState.Chase;
+                }
+                break;
+
+            default:
+                break;
+        }
 
 
 
