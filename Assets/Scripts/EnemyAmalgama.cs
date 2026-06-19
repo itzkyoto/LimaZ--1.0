@@ -35,6 +35,7 @@ public class EnemyAmalgama : MonoBehaviour
         switch (State)
         {
             case EnemyState.None:
+                State = EnemyState.Idle;
                 break;
 
             case EnemyState.Idle:

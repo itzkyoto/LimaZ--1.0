@@ -17,7 +17,7 @@ public class ManolargaEnemy : MonoBehaviour
     public EnemyState state;
     
     public float Speed = 5;
-    public GameObject target;
+    GameObject target;
     public float radiusattack = 1;
     public float radiusMovement = 5;
     public bool AttackMode = false;
@@ -45,8 +45,10 @@ public class ManolargaEnemy : MonoBehaviour
     void Update()
     {
 
-
-
+        if (target == null)
+        {
+            return;
+        }
         Vector3 targetPos = target.transform.position;
         Vector3 myPos = transform.position;
         switch (state)
@@ -78,6 +80,7 @@ public class ManolargaEnemy : MonoBehaviour
             case EnemyState.Flee:
                 {
 
+
                 }
                 break;
 
@@ -97,8 +100,26 @@ public class ManolargaEnemy : MonoBehaviour
 
                         currentTime = 0;
                     }
+                    
+
 
                     
+                    SpecialabilityReset += Time.deltaTime;
+                    if (SpecialabilityReset >= MaxAbilityTime)
+                    {
+
+                        IsAbleToUseSpecialAbility = true;
+
+                        SpecialabilityReset = 0;
+                    }
+                    if (radiusattack == 5)
+                    {
+                            target.GetComponent<Player>().Health -= SpecialAbilityDamage;
+                            IsAbleToUseSpecialAbility = false;
+                            Debug.Log("toma toma te pego piu piu");
+                        
+                    }
+
                     if (Vector3.Distance(targetPos, myPos) > radiusattack)
                         state = EnemyState.Chase;
                 }
