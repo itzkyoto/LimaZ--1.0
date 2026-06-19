@@ -8,7 +8,6 @@ public class EnemyAmalgama : MonoBehaviour
         None,
         Idle,
         Chase,
-        Flee,
         Attack,
 
     }

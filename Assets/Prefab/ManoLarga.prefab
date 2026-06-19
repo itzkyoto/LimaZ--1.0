@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1145469768305995701}
   - component: {fileID: 1032400416150145571}
-  - component: {fileID: 5002206854679005694}
+  - component: {fileID: -4635151460549806522}
   m_Layer: 0
   m_Name: ManoLarga
   m_TagString: Untagged
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &5002206854679005694
+--- !u!114 &-4635151460549806522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472a7eaf6ece797439a9ac44edac553e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpecialEnemy
+  state: 0
   Speed: 5
   target: {fileID: 0}
   radiusattack: 1

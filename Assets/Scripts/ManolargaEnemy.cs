@@ -3,7 +3,7 @@ using UnityEngine.Rendering;
 using static UnityEngine.GraphicsBuffer;
 
 
-public class SpecialEnemy : MonoBehaviour
+public class ManolargaEnemy : MonoBehaviour
 {
     public enum EnemyState
     {

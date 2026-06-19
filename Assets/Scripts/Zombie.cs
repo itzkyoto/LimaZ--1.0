@@ -1,5 +1,5 @@
 using UnityEngine;
-using static SpecialEnemy;
+
 
 public class Zombie : MonoBehaviour
 {
@@ -8,7 +8,6 @@ public class Zombie : MonoBehaviour
         None,
         Idle,
         Chase,
-        Flee,
         Attack,
 
     }
