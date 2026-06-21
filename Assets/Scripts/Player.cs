@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public float VerticalMovement;
     public float Speed;
     public float Health;
-    public GameObject BulletPreFab;
+    
 
     public Animator animator;
     
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         MovementPlayer();
-        shoot();
+        
         TakeDamage();
         
 
@@ -53,26 +53,14 @@ public class Player : MonoBehaviour
 
 
     }
-    public void shoot()
-    {
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = (mousePos - transform.position);
-        direction.z = 0;
-        direction.Normalize();
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            GameObject bullet = Instantiate(BulletPreFab, transform.position, Quaternion.identity);
-            bullet.transform.up = direction;
-        }
-    }
+    
     public void TakeDamage()
     {
         if (Health <= 0)
         {
             animator.SetBool("Morir", true);
             Debug.Log("Player is dead");
-            Destroy(gameObject, 1.5f);
+            Destroy(gameObject, 1.1f);
         }
     }
    
