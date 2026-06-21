@@ -70,8 +70,9 @@ public class Player : MonoBehaviour
     {
         if (Health <= 0)
         {
+            animator.SetBool("Morir", true);
             Debug.Log("Player is dead");
-            Destroy(gameObject);
+            Destroy(gameObject, 1f);
         }
     }
    
