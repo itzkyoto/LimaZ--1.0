@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -4635151460549806522}
   m_Layer: 0
   m_Name: ManoLarga
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,11 +106,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpecialEnemy
   state: 0
   Speed: 5
-  target: {fileID: 0}
   radiusattack: 1
   radiusMovement: 5
-  AttackMode: 0
-  timeToChangeMode: 5
+  RadiusFlee: 5
   currentTime: 0
   IsAbleToAttack: 1
   MaxTime: 2

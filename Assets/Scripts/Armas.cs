@@ -10,10 +10,10 @@ public class Armas : MonoBehaviour
         TwoHand,
     }
     public TiposDeArma Hand;
-    public float damage;
+    public float Damage;
     public float cooldown;
     public float Cooldown;
-    public float LastShoot;
+    public float LastShoot; 
     public GameObject BulletPreFab;
     void Start()
     {
@@ -37,14 +37,16 @@ public class Armas : MonoBehaviour
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        
-
-
+                       
                     }
+
+
                 }
+                
                 break;
             case TiposDeArma.OneHand:
                 {
+                    cooldown = 1f;
                     if (Input.GetMouseButtonDown(0))
                     {
                         if (Time.time - LastShoot >= Cooldown)
@@ -59,6 +61,7 @@ public class Armas : MonoBehaviour
                 break;
             case TiposDeArma.TwoHand:
                 {
+                    cooldown = 0.2f;
                     if (Input.GetMouseButtonDown(0))
                     {
                         if (Time.time - LastShoot >= Cooldown)
