@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
         {
             animator.SetBool("Morir", true);
             Debug.Log("Player is dead");
-            Destroy(gameObject, 1f);
+            Destroy(gameObject, 1.5f);
         }
     }
    
