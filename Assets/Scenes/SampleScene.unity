@@ -6355,8 +6355,7 @@ MonoBehaviour:
   VerticalMovement: 0
   Speed: 5
   Health: 100
-  BulletPreFab: {fileID: 3570690527243067779, guid: d0eac3da99717f64795d5e2fdef9e190, type: 3}
-  animator: {fileID: 0}
+  animator: {fileID: 1954303496}
 --- !u!212 &1954303498
 SpriteRenderer:
   serializedVersion: 2
