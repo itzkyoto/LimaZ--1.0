@@ -12,8 +12,9 @@ public class Armas : MonoBehaviour
     public TiposDeArma Hand;
     public float damage;
     public float cooldown;
+    public float Cooldown;
+    public float LastShoot;
     public GameObject BulletPreFab;
-
     void Start()
     {
         
@@ -33,15 +34,39 @@ public class Armas : MonoBehaviour
             case TiposDeArma.None:
                 break;
             case TiposDeArma.Melee:
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        
+
+
+                    }
+                }
                 break;
             case TiposDeArma.OneHand:
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        if (Time.time - LastShoot >= Cooldown)
+                        {
+                            GameObject bullet = Instantiate(BulletPreFab, transform.position, Quaternion.identity);
+                            bullet.transform.up = direction;
+                            
+                            LastShoot = Time.time;
+                        }
+                    }
+                }
                 break;
             case TiposDeArma.TwoHand:
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        GameObject bullet = Instantiate(BulletPreFab, transform.position, Quaternion.identity);
-                        bullet.transform.up = direction;
+                        if (Time.time - LastShoot >= Cooldown)
+                        {
+                            GameObject bullet = Instantiate(BulletPreFab, transform.position, Quaternion.identity);
+                            bullet.transform.up = direction;
+                            LastShoot = Time.time;
+                        }
                     }
                 }
                 break;
