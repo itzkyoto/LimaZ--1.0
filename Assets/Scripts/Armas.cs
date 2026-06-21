@@ -61,7 +61,7 @@ public class Armas : MonoBehaviour
             case TiposDeArma.TwoHand:
                 {
                     Cooldown = 0.2f;
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButton(0))
                     {
                         if (Time.time - LastShoot >= Cooldown)
                         {
