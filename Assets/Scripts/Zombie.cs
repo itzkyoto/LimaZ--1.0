@@ -16,6 +16,7 @@ public class Zombie : MonoBehaviour
     public GameObject target;
     public float radiusattack = 1;
     public float radiusMovement = 5;
+    public float Health = 100;
 
     public bool IsAbleToAttack = true;
     public float MaxTime = 2;
@@ -84,5 +85,12 @@ public class Zombie : MonoBehaviour
         }
        
     }
-   
+
+    public void TakeDamage()
+    {
+        if (Health <= 0)
+        {  
+            Destroy(gameObject);
+        }
+    }
 }

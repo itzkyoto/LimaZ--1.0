@@ -15,4 +15,13 @@ public class Shot : MonoBehaviour
     {
         transform.position += transform.up * speed * Time.deltaTime;
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemigos")
+        {
+            Zombie enemigo = collision.GetComponent<Zombie>();
+
+            enemigo.Health -= 1000;
+        }
+    }
 }
