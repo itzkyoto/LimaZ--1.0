@@ -75,14 +75,15 @@ public class Armas : MonoBehaviour
                             
                             LastShoot = Time.time;
                         }
-                        if (Input.GetKeyDown(KeyCode.Alpha1))
-                        {
-                            Hand = TiposDeArma.Melee;
-                        }
-                        if (Input.GetKeyDown(KeyCode.Alpha3))
-                        {
-                            Hand = TiposDeArma.TwoHand;
-                        }
+                       
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha1))
+                    {
+                        Hand = TiposDeArma.Melee;
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha3))
+                    {
+                        Hand = TiposDeArma.TwoHand;
                     }
                 }
                 break;
@@ -97,16 +98,18 @@ public class Armas : MonoBehaviour
                             bullet.transform.up = direction;
                             LastShoot = Time.time;
                         }
-                        if (Input.GetKeyDown(KeyCode.Alpha1))
-                        {
-                            Hand = TiposDeArma.Melee;
-                        }
-                        if (Input.GetKeyDown(KeyCode.Alpha2))
-                        {
-                            Hand = TiposDeArma.OneHand;
-                        }
-
+                        
                     }
+                    if (Input.GetKeyDown(KeyCode.Alpha1))
+                    {
+                        Hand = TiposDeArma.Melee;
+                    }
+                    if (Input.GetKeyDown(KeyCode.Alpha2))
+                    {
+                        Hand = TiposDeArma.OneHand;
+                    }
+
+
                 }
                 break;
             default:
