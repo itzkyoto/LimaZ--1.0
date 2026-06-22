@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
@@ -7,6 +8,7 @@ public class Player : MonoBehaviour
     public float VerticalMovement;
     public float Speed;
     public float Health;
+    public Armas currentWeapon;
     
 
     public Animator animator;
@@ -24,7 +26,15 @@ public class Player : MonoBehaviour
         MovementPlayer();
         
         TakeDamage();
-        
+        if (currentWeapon.Hand == Armas.TiposDeArma.Melee)
+        {
+            if (Input.GetMouseButtonDown(0)) 
+            {
+                animator.SetTrigger("Atacar");
+                
+            }  
+           
+        }
 
        
         
@@ -40,16 +50,48 @@ public class Player : MonoBehaviour
 
         Vector3 dir = new Vector3(x, y, 0);
         dir.Normalize();
+        float i = transform.position.y;
+        float e = transform.position.x;
 
-        if (dir != Vector3.zero)
-        {
-            animator.SetBool("Abajo", true);
-            transform.position += dir * Speed * Time.deltaTime;
+        transform.position += dir * Speed * Time.deltaTime;
+
+        if (dir != Vector3.zero) {
+            print("hi");
+            animator.SetBool("Moving", true);
+
+            if (dir.y < 0)
+            {
+                animator.SetBool("Up_Down", false);
+                animator.SetBool("Lateral_Vertical", false);
+
+            }
+            else if (dir.y > 0)
+            {
+                animator.SetBool("Up_Down", true);
+                animator.SetBool("Lateral_Vertical", false);
+            }
+
+            if (dir.x < 0)
+            {
+                animator.SetBool("Der_Izq", false);
+                animator.SetBool("Lateral_Vertical", true);
+
+            }
+            else if (dir.x > 0)
+            {
+                animator.SetBool("Der_Izq", true);
+                animator.SetBool("Lateral_Vertical", true);
+            }
         }
         else
         {
-            animator.SetBool("Abajo", false);
+            animator.SetBool("Moving", false);
         }
+
+
+
+
+
 
 
     }
